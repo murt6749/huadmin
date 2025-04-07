@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HU Muslim Jama'a Qir'aat Sector</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Cairo', sans-serif;
+    }
+    body {
+      height: 100vh;
+      background: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      border: 2px solid rgba(255,255,255,0.2);
+    }
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1.2rem;
+      color: #fcd34d;
+    }
+    input[type="password"] {
+      padding: 0.7rem;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      width: 100%;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    button {
+      padding: 0.7rem 2rem;
+      background: #fcd34d;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1rem;
+      color: #1f2937;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #fde68a;
+    }
+    .error {
+      margin-top: 1rem;
+      color: #f87171;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>HU Muslim Jama'a Qir'aat Sector</h2>
+    <p>Please enter the access password:</p>
+    <input type="password" id="password" placeholder="Enter password" />
+    <button onclick="checkPassword()">Enter</button>
+    <div id="error" class="error"></div>
+  </div>
+
+  <script>
+    function checkPassword() {
+      const input = document.getElementById("password").value;
+      const error = document.getElementById("error");
+      if (input === "only4jama'a") {
+        window.location.href = "admin.html";
+      } else {
+        error.textContent = "Incorrect password. Try again.";
+      }
+    }
+  </script>
+</body>
+</html>
