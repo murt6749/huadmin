@@ -1,90 +1,389 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HU Muslim Jama'a Qir'aat Sector</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Cairo', sans-serif;
-    }
-    body {
-      height: 100vh;
-      background: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-    }
-    .card {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 2rem;
-      border-radius: 20px;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-      text-align: center;
-      max-width: 400px;
-      width: 90%;
-      border: 2px solid rgba(255,255,255,0.2);
-    }
-    h2 {
-      font-size: 1.8rem;
-      margin-bottom: 1.2rem;
-      color: #fcd34d;
-    }
-    input[type="password"] {
-      padding: 0.7rem;
-      border-radius: 10px;
-      border: none;
-      outline: none;
-      width: 100%;
-      font-size: 1rem;
-      margin-bottom: 1rem;
-    }
-    button {
-      padding: 0.7rem 2rem;
-      background: #fcd34d;
-      border: none;
-      border-radius: 10px;
-      font-weight: bold;
-      font-size: 1rem;
-      color: #1f2937;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    button:hover {
-      background: #fde68a;
-    }
-    .error {
-      margin-top: 1rem;
-      color: #f87171;
-      font-size: 0.9rem;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HU Jama'aa - Admin Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a4d2e;
+            --secondary-color: #4f6f52;
+            --accent-color: #f5efe6;
+            --light-color: #e8dfca;
+            --white: #ffffff;
+            --dark: #333333;
+            --light-gray: #f5f5f5;
+            --medium-gray: #e0e0e0;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --success-color: #28a745;
+            --info-color: #17a2b8;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--dark);
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo h1 {
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--secondary-color);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--medium-gray);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(26, 77, 46, 0.2);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .alert {
+            padding: 12px 15px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .alert-danger {
+            background-color: rgba(220, 53, 69, 0.1);
+            color: var(--danger-color);
+            border: 1px solid rgba(220, 53, 69, 0.3);
+        }
+
+        .alert-success {
+            background-color: rgba(40, 167, 69, 0.1);
+            color: var(--success-color);
+            border: 1px solid rgba(40, 167, 69, 0.3);
+        }
+
+        .password-toggle {
+            position: relative;
+        }
+
+        .password-toggle i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: var(--secondary-color);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-3 {
+            margin-top: 15px;
+        }
+
+        .text-muted {
+            color: #6c757d;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-  <div class="card">
-    <h2>HU Muslim Jama'a Qir'aat Sector</h2>
-    <p>Please enter the access password:</p>
-    <input type="password" id="password" placeholder="Enter password" />
-    <button onclick="checkPassword()">Enter</button>
-    <div id="error" class="error"></div>
-  </div>
+    <div class="login-container">
+        <div class="logo">
+            <h1><i class="fas fa-graduation-cap"></i> HU Jama'aa</h1>
+            <p class="text-muted">Admin Dashboard Login</p>
+        </div>
 
-  <script>
-    function checkPassword() {
-      const input = document.getElementById("password").value;
-      const error = document.getElementById("error");
-      if (input === "only4jama'a") {
-        window.location.href = "admin.html";
-      } else {
-        error.textContent = "Incorrect password. Try again.";
-      }
-    }
-  </script>
+        <div id="errorMessage" class="alert alert-danger" style="display: none;"></div>
+        <div id="successMessage" class="alert alert-success" style="display: none;"></div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group password-toggle">
+                <label for="password">Password</label>
+                <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+                <i class="fas fa-eye" id="togglePassword"></i>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" id="loginBtn">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </div>
+        </form>
+
+        <div class="text-center mt-3">
+            <a href="#" id="forgotPassword">Forgot password?</a>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { 
+            getAuth, 
+            createUserWithEmailAndPassword, 
+            signInWithEmailAndPassword, 
+            sendPasswordResetEmail,
+            onAuthStateChanged
+        } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { 
+            getFirestore,
+            doc,
+            setDoc
+        } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBQyNVWh1BtCkXlBfuS7jHAa36FTklZayo",
+            authDomain: "pharma-quiz-b5a07.firebaseapp.com",
+            projectId: "pharma-quiz-b5a07",
+            storageBucket: "pharma-quiz-b5a07.appspot.com",
+            messagingSenderId: "161067776789",
+            appId: "1:161067776789:web:88b8a61145dc5f5c31471c",
+            measurementId: "G-3QRQE9HQFB"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // DOM Elements
+        const loginForm = document.getElementById('loginForm');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const togglePassword = document.getElementById('togglePassword');
+        const loginBtn = document.getElementById('loginBtn');
+        const forgotPassword = document.getElementById('forgotPassword');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+
+        // Admin credentials
+        const ADMIN_EMAIL = "jama'a@admin.com";
+        const ADMIN_PASSWORD = "1234Jama'a";
+        const ADMIN_NAME = "Admin User";
+
+        // Check if admin user exists, create if not
+        async function ensureAdminUserExists() {
+            try {
+                // Try to sign in with admin credentials
+                await signInWithEmailAndPassword(auth, ADMIN_EMAIL, ADMIN_PASSWORD);
+                
+                // If successful, sign out (we'll sign in properly when the form is submitted)
+                await auth.signOut();
+            } catch (error) {
+                // If login fails (likely because user doesn't exist), create the admin user
+                if (error.code === 'auth/user-not-found') {
+                    try {
+                        const userCredential = await createUserWithEmailAndPassword(auth, ADMIN_EMAIL, ADMIN_PASSWORD);
+                        
+                        // Add admin user data to Firestore
+                        await setDoc(doc(db, "users", userCredential.user.uid), {
+                            name: ADMIN_NAME,
+                            email: ADMIN_EMAIL,
+                            isAdmin: true,
+                            createdAt: new Date().toISOString()
+                        });
+                        
+                        showSuccessMessage("Admin account created successfully. You can now login.");
+                    } catch (creationError) {
+                        console.error("Error creating admin user:", creationError);
+                        showErrorMessage("Failed to initialize admin account. Please try again later.");
+                    }
+                } else {
+                    console.error("Error checking admin user:", error);
+                }
+            }
+        }
+
+        // Toggle password visibility
+        togglePassword.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+
+        // Handle login form submission
+        loginForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = emailInput.value.trim();
+            const password = passwordInput.value;
+            
+            loginBtn.disabled = true;
+            loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
+            
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+                
+                // Check if user is admin (you would typically check this in Firestore)
+                // For now, we'll just redirect to dashboard
+                window.location.href = 'dashboard.html';
+            } catch (error) {
+                console.error("Login error:", error);
+                
+                let errorMsg = "Login failed. Please try again.";
+                if (error.code === 'auth/invalid-email') {
+                    errorMsg = "Invalid email address.";
+                } else if (error.code === 'auth/user-disabled') {
+                    errorMsg = "This account has been disabled.";
+                } else if (error.code === 'auth/user-not-found') {
+                    errorMsg = "No account found with this email.";
+                } else if (error.code === 'auth/wrong-password') {
+                    errorMsg = "Incorrect password.";
+                }
+                
+                showErrorMessage(errorMsg);
+            } finally {
+                loginBtn.disabled = false;
+                loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
+            }
+        });
+
+        // Handle forgot password
+        forgotPassword.addEventListener('click', async function(e) {
+            e.preventDefault();
+            
+            const email = emailInput.value.trim();
+            
+            if (!email) {
+                showErrorMessage("Please enter your email address first.");
+                return;
+            }
+            
+            try {
+                await sendPasswordResetEmail(auth, email);
+                showSuccessMessage(`Password reset email sent to ${email}. Please check your inbox.`);
+            } catch (error) {
+                console.error("Password reset error:", error);
+                
+                let errorMsg = "Failed to send password reset email.";
+                if (error.code === 'auth/user-not-found') {
+                    errorMsg = "No account found with this email.";
+                } else if (error.code === 'auth/invalid-email') {
+                    errorMsg = "Invalid email address.";
+                }
+                
+                showErrorMessage(errorMsg);
+            }
+        });
+
+        // Show error message
+        function showErrorMessage(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+            successMessage.style.display = 'none';
+        }
+
+        // Show success message
+        function showSuccessMessage(message) {
+            successMessage.textContent = message;
+            successMessage.style.display = 'block';
+            errorMessage.style.display = 'none';
+        }
+
+        // Check if user is already logged in
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is signed in, redirect to dashboard
+                window.location.href = 'dashboard.html';
+            } else {
+                // Ensure admin user exists when no user is logged in
+                ensureAdminUserExists();
+            }
+        });
+    </script>
 </body>
 </html>
